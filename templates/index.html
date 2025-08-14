@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Excuse Generator • Mini Portfolio</title>
+    <meta name="description" content="A tiny excuse generator built with Flask for my portfolio." />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <link rel="icon" href="data:,">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="page-wrapper">
+        <header class="container">
+            <h1>Excuse Generator</h1>
+            <p class="muted">Beginner-friendly project #1 — no DB, no AI, just fun.</p>
+        </header>
+
+        <main class="container grid">
+            <section class="card" role="region" aria-labelledby="generate-title">
+                <h2 id="generate-title" class="section-title">Generate</h2>
+                <form class="controls" role="group" aria-labelledby="generate-title">
+                    <label for="category">Category</label>
+                    <select id="category" name="category" aria-label="Excuse category">
+                        <option value="">Random</option>
+                    </select>
+                    <button type="button" id="btn-generate" aria-label="Generate a new excuse">Generate excuse</button>
+                    <button type="button" id="btn-copy" title="Copy to clipboard"
+                        aria-label="Copy excuse to clipboard">Copy</button>
+                    <button type="button" id="btn-save" title="Save to favorites"
+                        aria-label="Save excuse to favorites">Save</button>
+                    <button type="button" id="btn-link" title="Copy permalink"
+                        aria-label="Copy excuse permalink">Permalink</button>
+                    <button type="button" id="btn-share" title="Share link"
+                        aria-label="Share excuse link">Share</button>
+                </form>
+
+                <output id="excuse" class="excuse-box" aria-live="polite" role="status" aria-label="Generated excuse">
+                    Click "Generate" to get an excuse…
+                </output>
+                <p id="meta" class="muted tiny" aria-live="polite"></p>
+            </section>
+
+            <aside class="card" role="complementary" aria-labelledby="favorites-title">
+                <h2 id="favorites-title" class="section-title">Favorites</h2>
+                <div class="fav-actions">
+                    <button type="button" id="btn-clear" aria-label="Clear all saved excuses">Clear all</button>
+                </div>
+                <ul id="favorites" class="fav-list" aria-live="polite" aria-label="Saved excuses" role="list"></ul>
+                <p class="muted tiny">Stored locally in your browser.</p>
+            </aside>
+        </main>
+
+        <footer class="container footer">
+            <a class="muted" href="/" aria-label="Return to home">© 2025 • Python Mini Projects</a>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+
+</html>
