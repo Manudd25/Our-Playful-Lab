@@ -1,11 +1,8 @@
-# Import the necessary modules
 from flask import Flask, render_template, jsonify
 import random
 
-# Create a new Flask web application
 app = Flask(__name__)
 
-# A list of funny excuses
 excuses = [
     "My Wi-Fi was abducted by aliens.",
     "I accidentally joined a goat yoga class instead of the meeting.",
@@ -14,19 +11,25 @@ excuses = [
     "My time machine was set to the wrong year."
 ]
 
-# Route for the home page
-# When someone goes to "/", Flask will render 'index.html'
 @app.route("/")
 def home():
-    return render_template("index.html")
+    return render_template("home.html") 
 
-# Route to get a random excuse
-# When someone goes to "/excuse", Flask returns a JSON object with one excuse
+@app.route("/excuse-generator")
+def excuse_generator():
+    return render_template("excusegenerator.html")
+
+@app.route("/about")
+def about():
+    return render_template("about.html")
+
+@app.route("/contact")
+def contact():
+    return render_template("contact.html")
+
 @app.route("/excuse")
 def get_excuse():
     return jsonify({"excuse": random.choice(excuses)})
 
-# Run the app if this file is executed directly
-# debug=True will auto-reload the server on code changes
 if __name__ == "__main__":
     app.run(debug=True)
