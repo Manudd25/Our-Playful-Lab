@@ -1,40 +1,91 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="en">
+
 <head>
-    <title>Excuse Generator</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Excuse Generator — Our Playful Lab</title>
+    <link rel="icon" href="data:,">
+    <!-- site base styles -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+    <!-- page-specific overrides -->
     <link rel="stylesheet" href="{{ url_for('static', filename='styles/excusegenerator.css') }}">
 </head>
+
 <body>
 
-    <!-- Navigation -->
+    <!-- floating orbs from main.css -->
+    <div class="bg-elements">
+        <div class="floating-orb orb-1"></div>
+        <div class="floating-orb orb-2"></div>
+        <div class="floating-orb orb-3"></div>
+        <div class="floating-orb orb-4"></div>
+    </div>
+
+    <!-- Navigation (same structure as home/about) -->
     <nav>
         <div class="nav-left">
             <a href="/">🏠 Home</a>
         </div>
         <div class="nav-right">
             <a href="/excuse-generator">Excuse Generator</a>
-            <a href="/petname-generator">Pet name Generator</a>
+            <a href="/petname-generator">Pet Name Generator</a>
             <a href="/projects">Projects</a>
             <a href="/about">About</a>
         </div>
     </nav>
 
-    <div class="container">
-        <h1>😂 Excuse Generator 😂</h1>
+    <!-- Hero (styled by main.css) -->
+    <header class="hero">
+        <div class="container hero-content">
+            <div class="title-container">
+                <h1>Instant Excuses, Zero Shame</h1>
+                <div class="title-decoration"><span class="sparkle">✨</span><span class="sparkle">🌟</span><span
+                        class="sparkle">💫</span></div>
+            </div>
+            <p class="hero-subtitle">Beginner-friendly project. No DB, no AI—just fun.</p>
+            <div class="subtitle-glow">Press “Generate” and go 🏃‍♀️</div>
+        </div>
+    </header>
 
-        <h3>Sorry...</h3>
-        <button onclick="fetchExcuse()">Give me an excuse</button>
-        <p id="excuse"></p>
-    </div>
+    <!-- App -->
+    <main class="container eg-layout">
+        <section class="eg-card">
+            <div class="eg-controls" role="group" aria-label="Excuse controls">
+                <!-- optional category; will populate if backend supports it -->
+                <label for="category">Category</label>
+                <select id="category" name="category">
+                    <option value="">Random</option>
+                </select>
 
-    <script>
-        function fetchExcuse() {
-            fetch("/excuse")
-                .then(response => response.json())
-                .then(data => {
-                    document.getElementById("excuse").textContent = data.excuse;
-                });
-        }
-    </script>
+                <button id="btn-generate" type="button" class="btn-primary">Generate</button>
+                <button id="btn-copy" type="button">Copy</button>
+                <button id="btn-save" type="button">Save</button>
+                <button id="btn-link" type="button">Permalink</button>
+                <button id="btn-share" type="button">Share</button>
+            </div>
+
+            <output id="excuse" class="eg-output" aria-live="polite">
+                Click “Generate” to get an excuse…
+            </output>
+            <p id="meta" class="eg-meta"></p>
+        </section>
+
+        <aside class="eg-card eg-favs" aria-labelledby="favorites-title">
+            <div class="eg-favs-head">
+                <h2 id="favorites-title">Favorites</h2>
+                <button id="btn-clear" type="button" class="btn-danger">Clear all</button>
+            </div>
+            <ul id="favorites" class="eg-fav-list" aria-live="polite" role="list"></ul>
+            <p class="eg-note">Saved locally in your browser.</p>
+        </aside>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-bottom">© 2025 • Our Playful Lab</div>
+    </footer>
+
+    <script src="{{ url_for('static', filename='scripts/excusegenerator.js') }}" defer></script>
 </body>
+
 </html>
