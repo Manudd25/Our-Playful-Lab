@@ -15,6 +15,12 @@
   --neon-green: #00ff80;
   --neon-yellow: #ffff00;
   --neon-orange: #ff8000;
+  
+  /* ENHANCED GREEN COLORS */
+  --green-600: #059669;
+  --green-500: #10B981;
+  --green-400: #34D399;
+  --green-300: #6EE7B7;
 
   --ring: rgba(255, 0, 128, 0.6);
   --border: rgba(255, 255, 255, 0.2);
@@ -365,18 +371,20 @@
 }
 
 .petname #btn-copy {
-  background: linear-gradient(135deg, var(--neon-blue), var(--neon-green));
-  border-color: var(--neon-blue);
+  background: linear-gradient(135deg, var(--green-600), var(--green-500), var(--green-400));
+  border-color: var(--green-500);
+  color: #ffffff;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 
-    0 0 20px rgba(0, 255, 255, 0.3),
+    0 0 20px rgba(16, 185, 129, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .petname #btn-copy:hover {
   transform: translateY(-3px) scale(1.05);
   box-shadow: 
-    0 10px 30px rgba(0, 255, 255, 0.5),
-    0 0 40px rgba(0, 255, 255, 0.3),
+    0 10px 30px rgba(16, 185, 129, 0.5),
+    0 0 40px rgba(16, 185, 129, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
@@ -539,8 +547,8 @@
 
 .petname .fact:hover {
   opacity: 1;
-  color: var(--neon-green);
-  text-shadow: 0 0 10px var(--neon-green);
+  color: var(--green-400);
+  text-shadow: 0 0 10px var(--green-400);
 }
 
 /* FOOTER ENHANCEMENT */
