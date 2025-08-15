@@ -1,62 +1,192 @@
-/* Excuse Generator Page Styles */
-body {
-    font-family: 'Segoe UI', Arial, sans-serif;
-    background-color: #f0f4f8;
-    margin: 0;
-    display: flex;
+/* Excuse Generator — themed to match main.css */
+
+.eg-layout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr; /* left bigger */
+  gap: 1.25rem;
+  align-items: start;
+}
+@media (max-width: 980px) {
+  .eg-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+/*  Card (one definition; keep dropdowns clickable)  */
+.eg-card {
+  font-size: clamp(1rem, 0.98rem + 0.3vw, 1.15rem);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.05)
+  );
+  border: 1px solid var(--border);
+  backdrop-filter: blur(20px);
+  border-radius: 18px;
+  padding: 1.25rem;
+  margin: 2rem 0;
+  box-shadow: 0 20px 40px var(--shadow);
+  position: relative;
+  overflow: visible; /* <— was hidden; broke the select dropdown */
+}
+.eg-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.06),
+    transparent
+  );
+  transform: translateX(-100%);
+  transition: transform 0.6s;
+  pointer-events: none;
+  z-index: 0;
+}
+.eg-card:hover::before {
+  transform: translateX(100%);
+}
+
+/* ensure controls sit above the sheen */
+.eg-controls {
+  position: relative;
+  z-index: 1;
+}
+
+/* ---- Controls ---- */
+.eg-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.eg-controls label {
+  font-size: clamp(1.05rem, 1rem + 0.4vw, 1.35rem);
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  color: var(--muted);
+}
+
+.eg-controls select,
+.eg-controls button {
+  appearance: none;
+  min-height: 44px;
+  padding: 0.75rem 1rem;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  color: var(--ink);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.04)
+  );
+  transition: transform 0.08s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+  cursor: pointer;
+}
+
+.eg-controls select {
+  position: relative;
+  z-index: 2; /* dropdown above everything */
+  padding-right: 2.4rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%2300ffff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='6 8 12 14 18 8'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 16px 16px;
+}
+
+.eg-controls button:hover,
+.eg-controls select:hover {
+  transform: translateY(-2px);
+  border-color: var(--neon-blue);
+}
+
+.eg-controls .btn-primary {
+  border-color: var(--neon-pink);
+  background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
+  box-shadow: 0 0 20px rgba(255, 0, 128, 0.35);
+  font-weight: 700;
+}
+.eg-controls .btn-primary:hover {
+  box-shadow: 0 10px 30px rgba(255, 0, 128, 0.5),
+    0 0 30px rgba(255, 0, 128, 0.3);
+}
+.eg-controls .btn-danger {
+  border-color: var(--neon-orange);
+}
+
+/* ---- Output ---- */
+.eg-output {
+  display: block;
+  margin-top: 0.5rem;
+  padding: 1.1rem 1.2rem;
+  min-height: 3.2rem;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0.03)
+  );
+  border: 1px dashed var(--border);
+  border-radius: 14px;
+  font-size: 1.05rem;
+}
+.eg-output:hover {
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 14px rgba(0, 255, 255, 0.18);
+}
+
+/* meta line */
+.eg-meta {
+  margin-top: 0.5rem;
+  color: var(--muted);
+  font-size: 0.9rem;
+  font-variant-numeric: tabular-nums;
+  display: none; /* shown by JS */
+}
+
+/* ---- Favorites ---- */
+.eg-favs-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+.eg-fav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+.eg-fav-list li {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  transition: transform 0.08s ease, border-color 0.2s ease;
+}
+.eg-fav-list li:hover {
+  transform: translateX(2px);
+  border-color: var(--neon-blue);
+}
+.eg-note {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 0.5rem;
+}
+
+/* ---- Small screens ---- */
+@media (max-width: 720px) {
+  .eg-controls {
     flex-direction: column;
-    min-height: 100vh;
-}
-
-/* Navigation */
-nav {
-    background-color: #333;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-nav a {
-    color: white;
-    text-decoration: none;
-    margin: 0 10px;
-}
-nav a:hover {
-    text-decoration: underline;
-}
-
-/* Container */
-.container {
-    flex: 1;
-    text-align: center;
-    padding: 50px 20px;
-}
-
-/* Heading */
-h1 {
-    color: #333;
-    margin-bottom: 30px;
-}
-
-/* Button */
-button {
-    background-color: #ff6b6b;
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 5px;
-    font-size: 1em;
-    cursor: pointer;
-    transition: 0.3s;
-}
-button:hover {
-    background-color: #ff3b3b;
-}
-
-/* Excuse text */
-#excuse {
-    margin-top: 20px;
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #222;
+    align-items: stretch;
+    gap: 0.5rem;
+  }
+  .eg-controls select,
+  .eg-controls button {
+    width: 100%;
+  }
 }

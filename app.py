@@ -1,6 +1,7 @@
 from flask import Flask, render_template, jsonify, request
 import random, secrets
 
+from generators.excusegenerator import make_excuse, ALL_CATS
 from generators.petname import make_pet_name
 
 app = Flask(__name__, static_folder="static", template_folder="templates")
@@ -17,8 +18,8 @@ excuses = [
 def home():
     return render_template("home.html") 
 
-@app.route("/excuse-generator")
-def excuse_generator():
+@app.get("/excuse-generator")
+def excuse_generator_page():
     return render_template("excusegenerator.html")
 
 @app.route("/about")
@@ -32,6 +33,22 @@ def contact():
 @app.route("/excuse")
 def get_excuse():
     return jsonify({"excuse": random.choice(excuses)})
+
+# Excuse API (supports ?category=general|work|school & ?seed=123)
+@app.get("/excuse")
+def excuse_api():
+    category = request.args.get("category")
+    seed = request.args.get("seed", type=int) or secrets.randbits(32)
+    rng = random.Random(seed)
+    used_cat, text = make_excuse(category, rng)
+    # If category was random, return "" so your JS shows "random" nicely
+    used = used_cat if category in ALL_CATS else ""
+    return jsonify({"excuse": text, "category": used, "seed": seed})
+
+# Optional: categories endpoint (enable in JS if you want dynamic fill)
+@app.get("/api/categories")
+def api_categories():
+    return jsonify({"categories": ALL_CATS})
 
 # ----- Pet Name Generator -----
 @app.get("/petname-generator")
