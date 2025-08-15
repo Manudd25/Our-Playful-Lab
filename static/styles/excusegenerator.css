@@ -1,4 +1,24 @@
-/* Excuse Generator — themed to match main.css */
+.hero.hero-excs .hero-content {
+  row-gap: 0.35rem;
+}
+.hero.hero-excs .hero-content .hero-subtitle {
+  margin: 0.25rem 0 0.2rem;
+}
+.hero.hero-excs .hero-content .subtitle-glow {
+  margin-top: 0.15rem;
+}
+
+@media (max-width: 560px) {
+  .hero.hero-excs .hero-content {
+    row-gap: 0.3rem;
+  }
+  .hero.hero-excs .hero-content .hero-subtitle {
+    margin: 0.2rem 0 0.15rem;
+  }
+  .hero.hero-excs .hero-content .subtitle-glow {
+    margin-top: 0.12rem;
+  }
+}
 
 .eg-layout {
   display: grid;
@@ -50,20 +70,20 @@
   transform: translateX(100%);
 }
 
-/* ensure controls sit above the sheen */
+/* ---- Controls ---- */
 .eg-controls {
-  position: relative;
+  display: grid;
+  grid-template-columns: minmax(260px, 1fr) auto;
+  grid-template-areas:
+    "cat gen"
+    "actions actions";
+  gap: 0.8rem;
+  align-items: center;
+  margin-bottom: 1rem;
+  position: relative; /* keep above the card sheen */
   z-index: 1;
 }
 
-/* ---- Controls ---- */
-.eg-controls {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
-}
 .eg-controls label {
   font-size: clamp(1.05rem, 1rem + 0.4vw, 1.35rem);
   font-weight: 600;
@@ -118,6 +138,31 @@
   border-color: var(--neon-orange);
 }
 
+/* Category group */
+.eg-cat {
+  grid-area: cat;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+.eg-cat label {
+  margin: 0;
+}
+
+/* Generate on the right */
+#btn-generate {
+  grid-area: gen;
+  justify-self: start;
+}
+
+/* Actions below, full width */
+.eg-actions {
+  grid-area: actions;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
 /* ---- Output ---- */
 .eg-output {
   display: block;
@@ -133,6 +178,7 @@
   border-radius: 14px;
   font-size: 1.05rem;
 }
+
 .eg-output:hover {
   border-color: var(--neon-blue);
   box-shadow: 0 0 14px rgba(0, 255, 255, 0.18);
@@ -181,12 +227,18 @@
 /* ---- Small screens ---- */
 @media (max-width: 720px) {
   .eg-controls {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.5rem;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "cat"
+      "gen"
+      "actions";
   }
-  .eg-controls select,
-  .eg-controls button {
+  #btn-generate {
+    justify-self: stretch;
     width: 100%;
+  }
+  .eg-actions > * {
+    flex: 1 1 48%;
+    min-width: 48%;
   }
 }

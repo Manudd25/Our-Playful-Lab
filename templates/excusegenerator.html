@@ -36,7 +36,7 @@
     </nav>
 
     <!-- Hero (styled by main.css) -->
-    <header class="hero">
+    <header class="hero hero-excs">
         <div class="container hero-content">
             <div class="title-container">
                 <h1>Instant Excuses, Zero Shame</h1>
@@ -46,46 +46,51 @@
             <p class="hero-subtitle">Beginner-friendly project. No DB, no AI—just fun.</p>
             <div class="subtitle-glow">Press “Generate” and go 🏃‍♀️</div>
         </div>
-    </header>
+        </class=>
 
-    <!-- App -->
-    <main class="container eg-layout">
-        <section class="eg-card">
-            <div class="eg-controls" role="group" aria-label="Excuse controls">
-                <!-- optional category; will populate if backend supports it -->
-                <label for="category">Category</label>
-                <select id="category" name="category">
-                    <option value="">Random</option>
-                </select>
+        <!-- App -->
+        <main class="container eg-layout">
+            <section class="eg-card">
+                <div class="eg-controls" role="group" aria-label="Excuse controls">
+                    <div class="eg-cat">
+                        <label for="category">Category</label>
+                        <select id="category" name="category">
+                            <option value="">Random</option>
+                            <!-- add more here or keep Random and let JS/API append -->
+                        </select>
+                    </div>
 
-                <button id="btn-generate" type="button" class="btn-primary">Generate</button>
-                <button id="btn-copy" type="button">Copy</button>
-                <button id="btn-save" type="button">Save</button>
-                <button id="btn-link" type="button">Permalink</button>
-                <button id="btn-share" type="button">Share</button>
-            </div>
+                    <button id="btn-generate" type="button" class="btn-primary">Generate</button>
 
-            <output id="excuse" class="eg-output" aria-live="polite">
-                Click “Generate” to get an excuse…
-            </output>
-            <p id="meta" class="eg-meta"></p>
-        </section>
+                    <div class="eg-actions">
+                        <button id="btn-copy" type="button">Copy</button>
+                        <button id="btn-save" type="button">Save</button>
+                        <button id="btn-link" type="button">Permalink</button>
+                        <button id="btn-share" type="button">Share</button>
+                    </div>
+                </div>
 
-        <aside class="eg-card eg-favs" aria-labelledby="favorites-title">
-            <div class="eg-favs-head">
-                <h2 id="favorites-title">Favorites</h2>
-                <button id="btn-clear" type="button" class="btn-danger">Clear all</button>
-            </div>
-            <ul id="favorites" class="eg-fav-list" aria-live="polite" role="list"></ul>
-            <p class="eg-note">Saved locally in your browser.</p>
-        </aside>
-    </main>
+                <output id="excuse" class="eg-output" aria-live="polite">
+                    Click “Generate” to get an excuse…
+                </output>
+                <p id="meta" class="eg-meta"></p>
+            </section>
 
-    <footer class="footer">
-        <div class="container footer-bottom">© 2025 • Our Playful Lab</div>
-    </footer>
+            <aside class="eg-card eg-favs" aria-labelledby="favorites-title">
+                <div class="eg-favs-head">
+                    <h2 id="favorites-title">Favorites</h2>
+                    <button id="btn-clear" type="button" class="btn-danger">Clear all</button>
+                </div>
+                <ul id="favorites" class="eg-fav-list" aria-live="polite" role="list"></ul>
+                <p class="eg-note">Saved locally in your browser.</p>
+            </aside>
+        </main>
 
-    <script src="{{ url_for('static', filename='scripts/excusegenerator.js') }}" defer></script>
+        <footer class="footer">
+            <div class="container footer-bottom">© 2025 • Our Playful Lab</div>
+        </footer>
+
+        <script src="{{ url_for('static', filename='scripts/excusegenerator.js') }}" defer></script>
 </body>
 
 </html>

@@ -17,18 +17,18 @@
   --neon-green: #00ff80;
   --neon-yellow: #ffff00;
   --neon-orange: #ff8000;
-  
+
   /* VIOLET/LILA COLORS */
-  --violet-600: #7C3AED;
-  --violet-500: #8B5CF6;
-  --violet-400: #A855F7;
-  --violet-300: #C084FC;
-  
+  --violet-600: #7c3aed;
+  --violet-500: #8b5cf6;
+  --violet-400: #a855f7;
+  --violet-300: #c084fc;
+
   /* ENHANCED GREEN COLORS */
   --green-600: #059669;
-  --green-500: #10B981;
-  --green-400: #34D399;
-  --green-300: #6EE7B7;
+  --green-500: #10b981;
+  --green-400: #34d399;
+  --green-300: #6ee7b7;
 
   --ring: rgba(255, 0, 128, 0.6);
   --shadow: rgba(0, 0, 0, 0.8);
@@ -40,14 +40,25 @@
 }
 
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   margin: 0;
   padding: 0;
   color: var(--ink);
-  background: 
-    radial-gradient(circle at 20% 80%, rgba(255, 0, 128, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(0, 255, 255, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(128, 0, 255, 0.1) 0%, transparent 50%),
+  background: radial-gradient(
+      circle at 20% 80%,
+      rgba(255, 0, 128, 0.15) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(0, 255, 255, 0.15) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 40% 40%,
+      rgba(128, 0, 255, 0.1) 0%,
+      transparent 50%
+    ),
     linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 50%, var(--bg3) 100%);
   min-height: 100vh;
   position: relative;
@@ -56,14 +67,17 @@ body {
 
 /* FLOATING PARTICLES EFFECT */
 body::before {
-  content: '';
+  content: "";
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: 
-    radial-gradient(2px 2px at 20px 30px, var(--neon-pink), transparent),
+  background-image: radial-gradient(
+      2px 2px at 20px 30px,
+      var(--neon-pink),
+      transparent
+    ),
     radial-gradient(2px 2px at 40px 70px, var(--neon-blue), transparent),
     radial-gradient(1px 1px at 90px 40px, var(--neon-purple), transparent),
     radial-gradient(1px 1px at 130px 80px, var(--neon-green), transparent),
@@ -77,8 +91,12 @@ body::before {
 }
 
 @keyframes float {
-  0% { transform: translateY(0px) rotate(0deg); }
-  100% { transform: translateY(-100px) rotate(360deg); }
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+  }
 }
 
 /* FLOATING ORBS */
@@ -136,9 +154,16 @@ body::before {
 }
 
 @keyframes orbFloat {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -30px) scale(1.1); }
-  66% { transform: translate(-20px, 20px) scale(0.9); }
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -30px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
 }
 
 /* NAVIGATION */
@@ -179,8 +204,13 @@ nav {
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
 }
 
 /* HERO SECTION */
@@ -188,9 +218,17 @@ nav {
   position: relative;
   z-index: 10;
   text-align: center;
-  padding: 6rem 2rem;
-  background: radial-gradient(70% 100% at 20% -10%, rgba(255, 0, 128, 0.2) 0%, transparent 60%),
-    radial-gradient(70% 90% at 80% -10%, rgba(0, 255, 255, 0.2) 0%, transparent 60%),
+  padding: 5rem 2rem;
+  background: radial-gradient(
+      70% 100% at 20% -10%,
+      rgba(255, 0, 128, 0.2) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      70% 90% at 80% -10%,
+      rgba(0, 255, 255, 0.2) 0%,
+      transparent 60%
+    ),
     linear-gradient(180deg, var(--bg1), var(--bg2));
 }
 
@@ -205,16 +243,18 @@ nav {
 }
 
 .hero h1 {
-  font-family: 'Orbitron', monospace;
+  font-family: "Orbitron", monospace;
   font-size: 4rem;
   font-weight: 900;
   letter-spacing: -2px;
-  background: linear-gradient(45deg, 
-    var(--neon-pink) 0%, 
-    var(--neon-purple) 25%, 
-    var(--neon-blue) 50%, 
-    var(--neon-green) 75%, 
-    var(--neon-yellow) 100%);
+  background: linear-gradient(
+    45deg,
+    var(--neon-pink) 0%,
+    var(--neon-purple) 25%,
+    var(--neon-blue) 50%,
+    var(--neon-green) 75%,
+    var(--neon-yellow) 100%
+  );
   background-size: 300% 300%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -225,8 +265,13 @@ nav {
 }
 
 @keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 .title-decoration {
@@ -255,8 +300,13 @@ nav {
 }
 
 @keyframes sparkleFloat {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-15px) rotate(180deg); }
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-15px) rotate(180deg);
+  }
 }
 
 .hero-subtitle {
@@ -275,8 +325,13 @@ nav {
 }
 
 @keyframes subtitlePulse {
-  0%, 100% { opacity: 0.8; }
-  50% { opacity: 1; }
+  0%,
+  100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 .hero-buttons {
@@ -304,13 +359,18 @@ nav {
 }
 
 .cta-button::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
   transition: left 0.5s;
 }
 
@@ -322,35 +382,34 @@ nav {
   background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
   border: 2px solid var(--neon-pink);
   color: var(--ink);
-  box-shadow: 
-    0 0 20px rgba(255, 0, 128, 0.3),
+  box-shadow: 0 0 20px rgba(255, 0, 128, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .cta-button.primary:hover {
   transform: translateY(-3px) scale(1.05);
-  box-shadow: 
-    0 10px 30px rgba(255, 0, 128, 0.5),
-    0 0 40px rgba(255, 0, 128, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(255, 0, 128, 0.5),
+    0 0 40px rgba(255, 0, 128, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .cta-button.secondary {
-  background: linear-gradient(135deg, var(--green-600), var(--green-500), var(--green-400));
+  background: linear-gradient(
+    135deg,
+    var(--green-600),
+    var(--green-500),
+    var(--green-400)
+  );
   border: 2px solid var(--green-500);
   color: #ffffff;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-  box-shadow: 
-    0 0 20px rgba(16, 185, 129, 0.3),
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .cta-button.secondary:hover {
   transform: translateY(-3px) scale(1.05);
-  box-shadow: 
-    0 10px 30px rgba(16, 185, 129, 0.5),
-    0 0 40px rgba(16, 185, 129, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.5),
+    0 0 40px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .btn-icon {
@@ -379,7 +438,7 @@ nav {
 
 .skills-showcase h2 {
   text-align: center;
-  font-family: 'Orbitron', monospace;
+  font-family: "Orbitron", monospace;
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--neon-yellow);
@@ -395,9 +454,11 @@ nav {
 }
 
 .skill-card {
-  background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.1) 0%, 
-    rgba(255, 255, 255, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
   border: 1px solid var(--border);
   backdrop-filter: blur(25px);
   border-radius: 20px;
@@ -409,13 +470,18 @@ nav {
 }
 
 .skill-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
   transition: left 0.5s;
 }
 
@@ -425,9 +491,7 @@ nav {
 
 .skill-card:hover {
   transform: translateY(-10px);
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.5),
-    0 0 30px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 255, 255, 0.1);
 }
 
 .skill-icon {
@@ -458,7 +522,11 @@ nav {
 
 .skill-tags span {
   padding: 0.3rem 0.8rem;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.05)
+  );
   border: 1px solid var(--border);
   border-radius: 20px;
   font-size: 0.85rem;
@@ -475,9 +543,11 @@ nav {
 /* FEATURED PROJECTS */
 .featured-projects {
   padding: 5rem 0;
-  background: linear-gradient(135deg, 
-    rgba(128, 0, 255, 0.1) 0%, 
-    rgba(0, 255, 255, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(128, 0, 255, 0.1) 0%,
+    rgba(0, 255, 255, 0.1) 100%
+  );
   position: relative;
   z-index: 10;
 }
@@ -489,7 +559,7 @@ nav {
 
 .featured-projects h2 {
   text-align: center;
-  font-family: 'Orbitron', monospace;
+  font-family: "Orbitron", monospace;
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--neon-purple);
@@ -507,8 +577,6 @@ nav {
   margin-right: auto;
 }
 
-
-
 .project-header {
   display: flex;
   justify-content: space-between;
@@ -525,7 +593,12 @@ nav {
 }
 
 .project-badge {
-  background: linear-gradient(135deg, var(--violet-500), var(--violet-300), var(--violet-400));
+  background: linear-gradient(
+    135deg,
+    var(--violet-500),
+    var(--violet-300),
+    var(--violet-400)
+  );
   color: #ffffff;
   padding: 0.3rem 0.8rem;
   border-radius: 15px;
@@ -536,14 +609,6 @@ nav {
   box-shadow: 0 2px 8px rgba(139, 92, 246, 0.4);
 }
 
-
-
-
-
-
-
-
-
 /* CTA SECTION */
 .cta-section {
   padding: 5rem 0;
@@ -553,7 +618,7 @@ nav {
 }
 
 .cta-section h2 {
-  font-family: 'Orbitron', monospace;
+  font-family: "Orbitron", monospace;
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--neon-yellow);
@@ -665,9 +730,11 @@ nav {
 }
 
 .stat-card {
-  background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.1) 0%, 
-    rgba(255, 255, 255, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
   border: 1px solid var(--border);
   backdrop-filter: blur(25px);
   border-radius: 20px;
@@ -678,9 +745,7 @@ nav {
 
 .stat-card:hover {
   transform: translateY(-5px);
-  box-shadow: 
-    0 15px 30px rgba(0, 0, 0, 0.4),
-    0 0 20px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.1);
 }
 
 .stat-number {
@@ -722,9 +787,11 @@ nav {
 
 /* Enhanced Project Cards */
 .project-card {
-  background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.1) 0%, 
-    rgba(255, 255, 255, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
   border: 1px solid var(--border);
   backdrop-filter: blur(25px);
   border-radius: 20px;
@@ -738,13 +805,18 @@ nav {
 }
 
 .project-card::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
   transition: left 0.5s;
 }
 
@@ -754,9 +826,7 @@ nav {
 
 .project-card:hover {
   transform: translateY(-10px);
-  box-shadow: 
-    0 20px 40px rgba(0, 0, 0, 0.5),
-    0 0 30px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 255, 255, 0.1);
 }
 
 .project-category {
@@ -810,7 +880,7 @@ nav {
 }
 
 .project-features li::before {
-  content: '✨';
+  content: "✨";
   position: absolute;
   left: 0;
   color: var(--neon-yellow);
@@ -825,7 +895,11 @@ nav {
 
 .tech-tag {
   padding: 0.4rem 1rem;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.05)
+  );
   border: 1px solid var(--border);
   border-radius: 20px;
   font-size: 0.9rem;
@@ -835,7 +909,11 @@ nav {
 }
 
 .tech-tag:hover {
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), rgba(255, 255, 255, 0.1));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.2),
+    rgba(255, 255, 255, 0.1)
+  );
   transform: translateY(-2px);
 }
 
@@ -857,14 +935,22 @@ nav {
   transition: all 0.3s ease;
   padding: 0.5rem 1rem;
   border-radius: 10px;
-  background: linear-gradient(135deg, rgba(0, 255, 255, 0.1), rgba(0, 255, 255, 0.05));
+  background: linear-gradient(
+    135deg,
+    rgba(0, 255, 255, 0.1),
+    rgba(0, 255, 255, 0.05)
+  );
   border: 1px solid rgba(0, 255, 255, 0.3);
 }
 
 .project-link.primary:hover {
   color: var(--green-400);
   text-shadow: 0 0 10px var(--green-400);
-  background: linear-gradient(135deg, rgba(52, 211, 153, 0.2), rgba(110, 231, 183, 0.1));
+  background: linear-gradient(
+    135deg,
+    rgba(52, 211, 153, 0.2),
+    rgba(110, 231, 183, 0.1)
+  );
   border-color: rgba(52, 211, 153, 0.5);
   transform: translateY(-2px);
 }
@@ -879,14 +965,22 @@ nav {
   transition: all 0.3s ease;
   padding: 0.5rem 1rem;
   border-radius: 10px;
-  background: linear-gradient(135deg, rgba(255, 0, 128, 0.1), rgba(255, 0, 128, 0.05));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 0, 128, 0.1),
+    rgba(255, 0, 128, 0.05)
+  );
   border: 1px solid rgba(255, 0, 128, 0.3);
 }
 
 .project-link.secondary:hover {
   color: var(--neon-purple);
   text-shadow: 0 0 10px var(--neon-purple);
-  background: linear-gradient(135deg, rgba(128, 0, 255, 0.2), rgba(128, 0, 255, 0.1));
+  background: linear-gradient(
+    135deg,
+    rgba(128, 0, 255, 0.2),
+    rgba(128, 0, 255, 0.1)
+  );
   border-color: rgba(128, 0, 255, 0.5);
   transform: translateY(-2px);
 }
@@ -930,9 +1024,11 @@ nav {
 }
 
 .showcase-item {
-  background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.08) 0%, 
-    rgba(255, 255, 255, 0.03) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.03) 100%
+  );
   border: 1px solid var(--border);
   backdrop-filter: blur(25px);
   border-radius: 20px;
@@ -943,9 +1039,7 @@ nav {
 
 .showcase-item:hover {
   transform: translateY(-5px);
-  box-shadow: 
-    0 15px 30px rgba(0, 0, 0, 0.4),
-    0 0 20px rgba(255, 255, 255, 0.1);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4), 0 0 20px rgba(255, 255, 255, 0.1);
 }
 
 .showcase-icon {
@@ -977,7 +1071,11 @@ nav {
 
 .showcase-stats span {
   padding: 0.3rem 0.8rem;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.05)
+  );
   border: 1px solid var(--border);
   border-radius: 15px;
   font-size: 0.8rem;
@@ -986,21 +1084,36 @@ nav {
 
 /* Status-specific badge styles */
 .project-badge.live-demo {
-  background: linear-gradient(135deg, var(--violet-600), var(--violet-400), var(--violet-500));
+  background: linear-gradient(
+    135deg,
+    var(--violet-600),
+    var(--violet-400),
+    var(--violet-500)
+  );
   color: #ffffff;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 0 2px 8px rgba(139, 92, 246, 0.4);
 }
 
 .project-badge.interactive {
-  background: linear-gradient(135deg, var(--violet-500), var(--violet-300), var(--violet-400));
+  background: linear-gradient(
+    135deg,
+    var(--violet-500),
+    var(--violet-300),
+    var(--violet-400)
+  );
   color: #ffffff;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 0 2px 8px rgba(124, 58, 237, 0.4);
 }
 
 .project-badge.live {
-  background: linear-gradient(135deg, var(--violet-400), var(--violet-600), var(--violet-300));
+  background: linear-gradient(
+    135deg,
+    var(--violet-400),
+    var(--violet-600),
+    var(--violet-300)
+  );
   color: #ffffff;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
   box-shadow: 0 2px 8px rgba(168, 85, 247, 0.4);
@@ -1044,8 +1157,15 @@ nav {
 }
 
 @keyframes footerSparkle {
-  0%, 100% { opacity: 0.6; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.1); }
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
 }
 
 /* FOCUS RING */
@@ -1060,37 +1180,37 @@ nav {
   .hero h1 {
     font-size: 2.5rem;
   }
-  
+
   .hero-buttons {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .skills-grid,
   .projects-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .showcase-grid {
     grid-template-columns: 1fr;
     max-width: 100%;
   }
-  
+
   .category-stats {
     grid-template-columns: repeat(3, 1fr);
     gap: 1rem;
     max-width: 100%;
   }
-  
+
   .project-actions {
     flex-direction: column;
   }
-  
+
   .cta-buttons {
     flex-direction: column;
     align-items: center;
   }
-  
+
   .footer-content {
     grid-template-columns: 1fr;
     text-align: center;
@@ -1101,15 +1221,15 @@ nav {
   .hero h1 {
     font-size: 2rem;
   }
-  
+
   .hero {
     padding: 4rem 1rem;
   }
-  
+
   .container {
     padding: 0 1rem;
   }
-  
+
   .skills-showcase,
   .featured-projects,
   .projects-overview,
@@ -1118,15 +1238,15 @@ nav {
   .cta-section {
     padding: 3rem 0;
   }
-  
+
   .stat-card {
     padding: 1.5rem;
   }
-  
+
   .stat-number {
     font-size: 2.5rem;
   }
-  
+
   .project-card {
     padding: 1.5rem;
   }
