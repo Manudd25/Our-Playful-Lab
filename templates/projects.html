@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>✨ Team M&I - Our Projects ✨</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700;900&display=swap"
+        rel="stylesheet">
+</head>
+
+<body class="home">
+
+    <!-- COOL BACKGROUND ELEMENTS -->
+    <div class="bg-elements">
+        <div class="floating-orb orb-1"></div>
+        <div class="floating-orb orb-2"></div>
+        <div class="floating-orb orb-3"></div>
+        <div class="floating-orb orb-4"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-left">
+            <a href="/">🏠 Home</a>
+        </div>
+        <div class="nav-right">
+            <a href="/excuse-generator">Excuse Generator</a>
+            <a href="/petname-generator">Pet Name Generator</a>
+            <a href="/projects" aria-current="page">Projects</a>
+            <a href="/about">About</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-content">
+            <div class="title-container">
+                <h1>Our Projects</h1>
+                <div class="title-decoration">
+                    <span class="sparkle">✨</span>
+                    <span class="sparkle">🌟</span>
+                    <span class="sparkle">💫</span>
+                </div>
+            </div>
+            <p class="hero-subtitle">Innovative Solutions & Creative Development</p>
+            <div class="subtitle-glow">🚀 Showcasing our passion for building amazing digital experiences 🚀</div>
+            <div class="hero-buttons">
+                <a href="/about" class="cta-button primary">
+                    <span class="btn-icon">👥</span>
+                    <span class="btn-text">Meet Our Team</span>
+                </a>
+                <a href="/contact" class="cta-button secondary">
+                    <span class="btn-icon">💼</span>
+                    <span class="btn-text">Work With Us</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Projects Overview -->
+    <section class="projects-overview">
+        <div class="container">
+            <div class="section-header">
+                <h2>Project Portfolio</h2>
+                <p>Discover our collection of innovative projects, each crafted with passion and cutting-edge technology.</p>
+            </div>
+            
+            <!-- Project Categories -->
+            <div class="project-categories">
+                <div class="category-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">{{ projects|length }}</div>
+                        <div class="stat-label">Total Projects</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">{{ projects|selectattr('status', 'equalto', 'Live Demo')|list|length }}</div>
+                        <div class="stat-label">Live Demos</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">{{ projects|selectattr('category', 'equalto', 'Web App')|list|length }}</div>
+                        <div class="stat-label">Web Applications</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Projects Grid -->
+    <section class="main-projects">
+        <div class="container">
+            <h2>Featured Projects</h2>
+            <div class="projects-grid">
+                {% for project in projects %}
+                <div class="project-card" data-category="{{ project.category|lower }}">
+                    <div class="project-header">
+                        <h3>{{ project.title }}</h3>
+                        <div class="project-badge {{ project.status|lower|replace(' ', '-') }}">
+                            {{ project.status }}
+                        </div>
+                    </div>
+                    
+                    <div class="project-category">
+                        <span class="category-tag">{{ project.category }}</span>
+                    </div>
+                    
+                    <p class="project-description">{{ project.description }}</p>
+                    
+                    <div class="project-features">
+                        <h4>Key Features:</h4>
+                        <ul>
+                            {% for feature in project.features %}
+                            <li>{{ feature }}</li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                    
+                    <div class="project-tech">
+                        {% for tech in project.technologies %}
+                        <span class="tech-tag">{{ tech }}</span>
+                        {% endfor %}
+                    </div>
+                    
+                    <div class="project-actions">
+                        <a href="{{ project.link }}" class="project-link primary">
+                            <span class="btn-text">View Project</span>
+                            <span class="arrow">→</span>
+                        </a>
+                        {% if project.github %}
+                        <a href="{{ project.github }}" class="project-link secondary" target="_blank">
+                            <span class="btn-icon">📁</span>
+                            <span class="btn-text">Source Code</span>
+                            <span class="arrow">↗</span>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Call to Action -->
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Start Your Project?</h2>
+            <p>We're passionate about creating innovative solutions and bringing ideas to life. Let's build something amazing together!</p>
+            <div class="cta-buttons">
+                <a href="/contact" class="cta-button primary">
+                    <span class="btn-icon">📧</span>
+                    <span class="btn-text">Get In Touch</span>
+                </a>
+                <a href="/about" class="cta-button secondary">
+                    <span class="btn-icon">👥</span>
+                    <span class="btn-text">Learn More About Us</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Team M&I</h4>
+                    <p>Creative developers passionate about building amazing digital experiences.</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="/about">About Us</a>
+                    <a href="/projects">Projects</a>
+                    <a href="/contact">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Connect</h4>
+                    <a href="https://www.linkedin.com/in/manuela-di-dario-11812372/" target="_blank">Manuela's
+                        LinkedIn</a>
+                    <a href="https://www.linkedin.com/in/irinaniko/" target="_blank">Irina's LinkedIn</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Team M&I. Built with ❤️ and lots of ☕</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- FOOTER DECORATION -->
+    <div class="footer-decoration">
+        <span>✨</span>
+        <span>🌟</span>
+        <span>💫</span>
+        <span>🚀</span>
+    </div>
+
+</body>
+
+</html>

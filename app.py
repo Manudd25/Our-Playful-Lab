@@ -13,6 +13,36 @@ excuses = [
     "My time machine was set to the wrong year."
 ]
 
+# Projects data structure - easily expandable
+projects = [
+    {
+        "id": "excuse-generator",
+        "title": "🎯 Excuse Generator",
+        "description": "A witty excuse generator with creative responses and modern UI design. Perfect for those moments when you need a creative explanation.",
+        "category": "Web App",
+        "status": "Live Demo",
+        "technologies": ["Flask", "Python", "CSS3", "HTML5"],
+        "features": ["Random excuse generation", "Modern UI/UX", "Responsive design"],
+        "link": "/excuse-generator",
+        "github": None,
+        "image": None,
+        "priority": 1
+    },
+    {
+        "id": "petname-generator",
+        "title": "🐾 Pet Name Generator",
+        "description": "Creative pet naming tool with categories and beautiful animations. Generate unique names for your furry friends. Try it out!",
+        "category": "Web App",
+        "status": "Interactive",
+        "technologies": ["JavaScript", "CSS3", "HTML5", "APIs"],
+        "features": ["Category-based generation", "Beautiful animations", "Responsive design"],
+        "link": "/petname-generator",
+        "github": None,
+        "image": None,
+        "priority": 2
+    }
+]
+
 @app.route("/")
 def home():
     return render_template("home.html") 
@@ -28,6 +58,12 @@ def about():
 @app.route("/contact")
 def contact():
     return render_template("contact.html")
+
+@app.route("/projects")
+def projects_page():
+    # Sort projects by priority
+    sorted_projects = sorted(projects, key=lambda x: x['priority'])
+    return render_template("projects.html", projects=sorted_projects)
 
 @app.route("/excuse")
 def get_excuse():
