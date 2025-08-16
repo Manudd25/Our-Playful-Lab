@@ -32,8 +32,6 @@
 
   --ring: rgba(255, 0, 128, 0.6);
   --shadow: rgba(0, 0, 0, 0.8);
-
-  color-scheme: dark;
 }
 
 /* GLOBAL STYLES */
@@ -484,7 +482,6 @@ nav {
   position: relative;
   z-index: 10;
 }
-
 .skills-showcase h2 {
   text-align: center;
   font-family: "Orbitron", monospace;
@@ -494,14 +491,12 @@ nav {
   text-shadow: 0 0 20px var(--neon-yellow);
   margin-bottom: 3rem;
 }
-
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 2rem;
   margin-top: 2rem;
 }
-
 .skill-card {
   background: linear-gradient(
     135deg,
@@ -517,7 +512,6 @@ nav {
   position: relative;
   overflow: hidden;
 }
-
 .skill-card::before {
   content: "";
   position: absolute;
@@ -531,21 +525,17 @@ nav {
   );
   transition: left 0.5s;
 }
-
 .skill-card:hover::before {
   left: 100%;
 }
-
 .skill-card:hover {
   transform: translateY(-10px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), 0 0 30px rgba(255, 255, 255, 0.1);
 }
-
 .skill-icon {
   font-size: 3rem;
   margin-bottom: 1rem;
 }
-
 .skill-card h3 {
   font-size: 1.5rem;
   font-weight: 700;
@@ -553,26 +543,17 @@ nav {
   text-shadow: 0 0 10px var(--neon-blue);
   margin-bottom: 1rem;
 }
-
 .skill-card p {
   color: var(--muted);
   margin-bottom: 1.5rem;
   line-height: 1.6;
 }
-
-.skill-promise {
-  color: var(--muted);
-  font-size: 0.95rem;
-  margin: 0.5rem 0 1rem;
-}
-
 .skill-tags {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
   justify-content: center;
 }
-
 .skill-tags span {
   padding: 0.3rem 0.8rem;
   background: linear-gradient(
