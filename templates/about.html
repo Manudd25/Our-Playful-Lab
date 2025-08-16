@@ -1,155 +1,122 @@
-<!doctype html>
-<html lang="en">
+{% extends "base.html" %}
+{% block title %}✨ About — Team M&I ✨{% endblock %}
+{% block body_class %}about{% endblock %}
 
-<head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>✨ About — Team M&I ✨</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='styles/about.css') }}">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700;900&display=swap"
-        rel="stylesheet">
-</head>
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='styles/about.css') }}">
+{% endblock %}
 
-<body class="about">
+{% block content %}
 
-    <!-- COOL BACKGROUND ELEMENTS -->
-    <div class="bg-elements">
-        <div class="floating-orb orb-1"></div>
-        <div class="floating-orb orb-2"></div>
-        <div class="floating-orb orb-3"></div>
+<!-- Hero -->
+<header class="hero hero--about">
+    <div class="hero-content">
+        <div class="title-container">
+            <h1>Two minds. One playful lab.</h1>
+            <div class="title-decoration">
+                <span class="sparkle">✨</span>
+                <span class="sparkle">🌟</span>
+                <span class="sparkle">💫</span>
+            </div>
+        </div>
+        <p class="muted">We met at DCI (HTML/CSS • MERN). Now we build compact, joyful projects—Manuela growing
+            toward IT/engineering delivery, Irina exploring AI & Python.</p>
+        <div class="subtitle-glow">🚀 Creating magic with code & creativity 🚀</div>
+        <a href="/" class="cta-button">
+            <span class="btn-icon">✨</span>
+            <span class="btn-text">See our projects</span>
+        </a>
     </div>
+</header>
 
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-left">
-            <a href="/">🏠 Home</a>
+<!-- Profiles -->
+<main class="container profiles">
+    <!-- Manuela -->
+    <article class="card profile">
+        <div class="profile-header">
+            <div class="avatar" aria-hidden="true">M</div>
+            <div class="profile-info">
+                <h2>Manuela Di Dario</h2>
+                <p class="subtitle">Full-Stack Engineer • Python & Cloud</p>
+            </div>
         </div>
-        <div class="nav-right">
-            <a href="/excuse-generator">Excuse Generator</a>
-            <a href="/petname-generator">Pet Name Generator</a>
-            <a href="/projects">Projects</a>
-            <a href="/about" aria-current="page">About</a>
+        <div class="profile-content">
+            <ul class="chips">
+                <li>HTML/CSS</li>
+                <li>JavaScript</li>
+                <li>Python</li>
+                <li>Git</li>
+                <li>Azure</li>
+            </ul>
+            <p class="blurb">Builds scalable web apps with modern stacks, now integrating Python and cloud (Azure).
+            </p>
+            <div class="links">
+                <a href="https://manueladidario.onrender.com" target="_blank" rel="noopener">Portfolio</a>
+                <a href="https://www.linkedin.com/in/manuela-di-dario-11812372/" target="_blank"
+                    rel="noopener">LinkedIn</a>
+                <a href="mailto:didariomanuela@gmail.com">✉️ Email</a>
+                <a href="https://github.com/Manudd25" target="_blank" rel="noopener">GitHub</a>
+            </div>
+            <div class="now">
+                <span>Now:</span> Advancing Python for full-stack/cloud, shipping efficiently, and automating
+                workflows.
+            </div>
         </div>
-    </nav>
+    </article>
 
-    <!-- Hero -->
-    <header class="hero hero--about">
-        <div class="hero-content">
-            <div class="title-container">
-                <h1>Two minds. One playful lab.</h1>
-                <div class="title-decoration">
-                    <span class="sparkle">✨</span>
-                    <span class="sparkle">🌟</span>
-                    <span class="sparkle">💫</span>
-                </div>
+    <!-- Irina -->
+    <article class="card profile">
+        <div class="profile-header">
+            <div class="avatar" aria-hidden="true">I</div>
+            <div class="profile-info">
+                <h2>Irina Holler</h2>
+                <p class="subtitle">AI-curious Engineer • Python & Design</p>
             </div>
-            <p class="muted">We met at DCI (HTML/CSS • MERN). Now we build compact, joyful projects—Manuela growing
-                toward IT/engineering delivery, Irina exploring AI & Python.</p>
-            <div class="subtitle-glow">🚀 Creating magic with code & creativity 🚀</div>
-            <a href="/" class="cta-button">
-                <span class="btn-icon">✨</span>
-                <span class="btn-text">See our projects</span>
-            </a>
         </div>
-    </header>
-
-    <!-- Profiles -->
-    <main class="container profiles">
-        <!-- Manuela -->
-        <article class="card profile">
-            <div class="profile-header">
-                <div class="avatar" aria-hidden="true">M</div>
-                <div class="profile-info">
-                    <h2>Manuela Di Dario</h2>
-                    <p class="subtitle">Full-Stack Engineer • Python & Cloud</p>
-                </div>
+        <div class="profile-content">
+            <ul class="chips">
+                <li>HTML/CSS</li>
+                <li>JavaScript</li>
+                <li>MERN</li>
+                <li>WordPress</li>
+                <li>Python</li>
+                <li>LLMs</li>
+                <li>Git</li>
+            </ul>
+            <p class="blurb">From rough idea to smooth micro-app: clean UI, solid stack, and just the essentials—no
+                extra furniture, no wasted clicks.</p>
+            <div class="links">
+                <a href="https://myrina.de/portfolio/" target="_blank" rel="noopener">Portfolio</a>
+                <a href="https://www.linkedin.com/in/irinaniko/" target="_blank" rel="noopener">LinkedIn</a>
+                <a href="mailto:irina@mygrin.de">✉️ Email</a>
+                <a href="https://github.com/irinaholler" target="_blank" rel="noopener">GitHub</a>
             </div>
-            <div class="profile-content">
-                <ul class="chips">
-                    <li>HTML/CSS</li>
-                    <li>JavaScript</li>
-                    <li>Python</li>
-                    <li>Git</li>
-                    <li>Azure</li>
-                </ul>
-                <p class="blurb">Builds scalable web apps with modern stacks, now integrating Python and cloud (Azure).
-                </p>
-                <div class="links">
-                    <a href="https://manueladidario.onrender.com" target="_blank" rel="noopener">Portfolio</a>
-                    <a href="https://www.linkedin.com/in/manuela-di-dario-11812372/" target="_blank"
-                        rel="noopener">LinkedIn</a>
-                    <a href="{{ url_for('static', filename='cv/Manuela-Di-Dario.pdf') }}" download>📄 CV</a>
-                    <a href="https://github.com/Manudd25" target="_blank" rel="noopener">GitHub</a>
-                </div>
-                <div class="now">
-                    <span>Now:</span> Advancing Python for full-stack/cloud, shipping efficiently, and automating
-                    workflows.
-                </div>
+            <div class="now">
+                <span>Now:</span> Deepening server-side skills, crafting lean micro-apps, and weaving in AI where it
+                adds real flow—not friction.
             </div>
-        </article>
-
-        <!-- Irina -->
-        <article class="card profile">
-            <div class="profile-header">
-                <div class="avatar" aria-hidden="true">I</div>
-                <div class="profile-info">
-                    <h2>Irina Holler</h2>
-                    <p class="subtitle">AI-curious Engineer • Python & Flask</p>
-                </div>
-            </div>
-            <div class="profile-content">
-                <ul class="chips">
-                    <li>HTML/CSS</li>
-                    <li>JavaScript</li>
-                    <li>MERN</li>
-                    <li>Python</li>
-                    <li>LLMs</li>
-                    <li>Git</li>
-                </ul>
-                <p class="blurb">Builds tiny tools with real UX, adds AI when it helps—not just because it’s shiny.</p>
-                <div class="links">
-                    <a href="https://myrina.de/portfolio/" target="_blank" rel="noopener">Portfolio</a>
-                    <a href="https://www.linkedin.com/in/irinaniko/" target="_blank" rel="noopener">LinkedIn</a>
-                    <a href="{{ url_for('static', filename='cv/Irina-Niko.pdf') }}" download>📄 CV</a>
-                    <a href="https://github.com/irinaholler" target="_blank" rel="noopener">GitHub</a>
-                </div>
-                <div class="now">
-                    <span>Now:</span> Python/Flask projects, data-driven features, sensible AI.
-                </div>
-            </div>
-        </article>
-    </main>
-
-    <!-- Team goals -->
-    <section class="container goals card">
-        <h3>What we’re about</h3>
-        <ul class="bullets">
-            <li><strong>Small, real, shippable.</strong> Each project fits on one page and works today.</li>
-            <li><strong>Clean code, clear UI.</strong> Readable files, fast UX, keyboard-friendly.</li>
-            <li><strong>Team flow.</strong> We pair, review, and iterate—like we’ll do on your team.</li>
-        </ul>
-        <div class="cta-row">
-            <a class="cta-ghost" href="#" id="random-demo">🎲 Surprise me</a>
         </div>
-        <script>
-            document.getElementById('random-demo').addEventListener('click', e => {
-                e.preventDefault();
-                const demos = ['/excuse-generator', '/petname-generator']; // add more here
-                location.href = demos[Math.floor(Math.random() * demos.length)];
-            });
-        </script>
-    </section>
+    </article>
+</main>
 
-    <!-- FOOTER DECORATION -->
-    <div class="footer-decoration">
-        <span>✨</span>
-        <span>🌟</span>
-        <span>💫</span>
-        <span>🚀</span>
+<!-- Team goals -->
+<section class="container goals card">
+    <h3>What we’re about</h3>
+    <ul class="bullets">
+        <li><strong>Small, real, shippable.</strong> Each project fits on one page and works today.</li>
+        <li><strong>Clean code, clear UI.</strong> Readable files, fast UX, keyboard-friendly.</li>
+        <li><strong>Team flow.</strong> We pair, review, and iterate—like we’ll do on your team.</li>
+    </ul>
+    <div class="cta-row">
+        <a class="cta-ghost" href="#" id="random-demo">🎲 Surprise me</a>
     </div>
+    <script>
+        document.getElementById('random-demo').addEventListener('click', e => {
+            e.preventDefault();
+            const demos = ['/excuse-generator', '/petname-generator']; // add more here
+            location.href = demos[Math.floor(Math.random() * demos.length)];
+        });
+    </script>
+</section>
 
-</body>
-
-</html>
+{% endblock %}

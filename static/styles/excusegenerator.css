@@ -1,4 +1,35 @@
-/* Excuse Generator — themed to match main.css */
+.hero.hero-excs .hero-content {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.35rem;
+}
+.hero.hero-excs .hero-content .hero-subtitle {
+  margin: 0.25rem 0 0.2rem;
+}
+.hero.hero-excs .hero-content .subtitle-glow {
+  margin: 0.25rem 0 0.2rem;
+}
+
+@media (max-width: 560px) {
+  .hero.hero-excs .hero-content {
+    row-gap: 0.3rem;
+  }
+}
+.hero.hero-excs .hero-content .hero-subtitle {
+  margin: 0.25rem 0 0.2rem;
+}
+.hero.hero-excs .hero-content .subtitle-glow {
+  margin-top: 0.15rem;
+}
+
+@media (max-width: 560px) {
+  .hero.hero-excs .hero-content .hero-subtitle {
+    margin: 0.2rem 0 0.15rem;
+  }
+  .hero.hero-excs .hero-content .subtitle-glow {
+    margin-top: 0.12rem;
+  }
+}
 
 .eg-layout {
   display: grid;
@@ -50,20 +81,16 @@
   transform: translateX(100%);
 }
 
-/* ensure controls sit above the sheen */
+/* ---- Controls ---- */
 .eg-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  align-items: flex-start;
   position: relative;
   z-index: 1;
 }
 
-/* ---- Controls ---- */
-.eg-controls {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
-}
 .eg-controls label {
   font-size: clamp(1.05rem, 1rem + 0.4vw, 1.35rem);
   font-weight: 600;
@@ -96,6 +123,11 @@
   background-repeat: no-repeat;
   background-position: right 12px center;
   background-size: 16px 16px;
+  background-color: rgba(24, 26, 44, 0.65); /* dark glass */
+  border-color: var(--border);
+  color: var(--ink);
+  backdrop-filter: blur(12px);
+  -webkit-text-fill-color: var(--ink); /* Safari text color */
 }
 
 .eg-controls button:hover,
@@ -118,12 +150,82 @@
   border-color: var(--neon-orange);
 }
 
+.eg-controls .eg-cat {
+  display: grid;
+  grid-template-columns: auto 1fr; /* label | select */
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.eg-controls .eg-cat label {
+  font-size: 0.95rem;
+  line-height: 1;
+  font-weight: 600;
+  color: var(--muted);
+  margin: 0;
+  white-space: nowrap; /* keep on one line */
+}
+
+/* Style option rows where supported (Chrome/Firefox/Edge) */
+.eg-controls select option {
+  background-color: #0f1222; /* deep dark */
+  color: var(--ink);
+}
+
+/* Category group */
+.eg-cat {
+  display: grid;
+  gap: 0.35rem;
+  max-width: 640px;
+}
+
+#category {
+  width: 100%;
+  min-width: 220px;
+  height: 44px;
+}
+
+#category,
+#btn-generate {
+  height: 44px; /* same height for nice alignment */
+  padding-block: 0.6rem; /* internal top/bottom padding */
+}
+
+.eg-cat label {
+  margin: 0;
+}
+
+/* Generate on the right */
+#btn-generate {
+  white-space: nowrap;
+  height: 44px;
+  align-self: end;
+  padding: 0.85rem 1.25rem;
+}
+
+/* Actions below, full width */
+.eg-actions {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: nowrap; /* keep one row when there's space */
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.eg-actions button {
+  padding: 0.6rem 0.9rem;
+  min-height: 42px;
+  font-size: 0.95rem;
+}
+
 /* ---- Output ---- */
 .eg-output {
   display: block;
   margin-top: 0.5rem;
   padding: 1.1rem 1.2rem;
   min-height: 3.2rem;
+  color: var(--neon-blue);
+  letter-spacing: 0.01rem;
   background: linear-gradient(
     135deg,
     rgba(255, 255, 255, 0.06),
@@ -131,8 +233,9 @@
   );
   border: 1px dashed var(--border);
   border-radius: 14px;
-  font-size: 1.05rem;
+  font-size: 1.2rem;
 }
+
 .eg-output:hover {
   border-color: var(--neon-blue);
   box-shadow: 0 0 14px rgba(0, 255, 255, 0.18);
@@ -180,13 +283,181 @@
 
 /* ---- Small screens ---- */
 @media (max-width: 720px) {
-  .eg-controls {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.5rem;
+  .eg-actions > * {
+    flex: 1 1 48%;
+    min-width: 48%;
   }
-  .eg-controls select,
-  .eg-controls button {
+}
+
+/* first row: Category + Generate inline */
+.eg-row {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) auto; /* select grows, button auto */
+  gap: 1rem;
+  align-items: end;
+  margin-bottom: 0.6rem;
+}
+
+.eg-row > * {
+  margin-block: 6px;
+}
+
+/* Small screens: stack neatly */
+@media (max-width: 720px) {
+  .eg-row {
+    grid-template-columns: 1fr;
+  }
+  #btn-generate {
     width: 100%;
+  }
+  .eg-actions > * {
+    flex: 1 1 48%;
+    min-width: 48%;
+  }
+}
+
+@media (max-width: 720px) {
+  .eg-actions {
+    flex-wrap: wrap;
+  }
+  .eg-actions button {
+    flex: 1 1 calc(50% - 0.75rem);
+    min-width: 0;
+  }
+}
+
+@media (max-width: 560px) {
+  .eg-controls .eg-cat {
+    grid-template-columns: 1fr; /* label above select */
+  }
+  .eg-controls .eg-cat label {
+    margin-bottom: 0.25rem;
+  }
+}
+
+/* === Favorites — Glow Glass Revamp === */
+
+/* Heading + clear button */
+.eg-favs h2 {
+  margin: 0;
+  font-size: clamp(1.2rem, 1rem + 1.2vw, 1.6rem);
+  letter-spacing: 0.2px;
+  color: var(--ink);
+  text-shadow: 0 0 12px rgba(0, 255, 255, 0.25);
+}
+.eg-favs-head {
+  margin-bottom: 1rem;
+}
+
+.eg-favs #btn-clear {
+  appearance: none;
+  border: 1px solid var(--neon-orange);
+  border-radius: 10px;
+  padding: 0.45rem 0.75rem;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 128, 0, 0.12),
+    rgba(255, 128, 0, 0.06)
+  );
+  color: var(--ink);
+  font-weight: 600;
+  transition: transform 0.08s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.eg-favs #btn-clear:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 0 16px rgba(255, 128, 0, 0.35);
+  border-color: var(--neon-yellow);
+}
+
+/* List spacing */
+.eg-fav-list {
+  gap: 0.9rem;
+}
+
+/* Card for each favorite */
+.eg-fav-item {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 0.85rem 1rem;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.03)
+  );
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 24px var(--shadow);
+  transition: transform 0.12s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+.eg-fav-item:hover {
+  transform: translateY(-2px);
+  border-color: var(--neon-blue);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.55), 0 0 20px rgba(0, 255, 255, 0.15);
+}
+
+/* Top row: meta on left, actions on right */
+.eg-fav-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 0.4rem;
+}
+.eg-fav-row .eg-meta.tiny {
+  font-size: 0.85rem;
+  color: var(--muted);
+  letter-spacing: 0.2px;
+}
+
+/* Chip buttons */
+.eg-fav-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+.eg-fav-actions button {
+  appearance: none;
+  padding: 0.45rem 0.8rem;
+  min-height: 36px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.04)
+  );
+  color: var(--ink);
+  font-weight: 600;
+  letter-spacing: 0.2px;
+  transition: transform 0.08s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+.eg-fav-actions button:hover {
+  transform: translateY(-1px);
+  border-color: var(--neon-blue);
+  box-shadow: 0 0 12px rgba(0, 255, 255, 0.18);
+}
+
+/* The text block */
+.eg-fav-text {
+  font-size: clamp(0.9rem, 0.78rem + 0.25vw, 1.2rem);
+  line-height: 1.45;
+  letter-spacing: 0.01em;
+  color: var(--ink);
+}
+
+/* Note under the list */
+.eg-note {
+  margin-top: 0.8rem;
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+/* Small screens */
+@media (max-width: 640px) {
+  .eg-fav-actions button {
+    flex: 1 1 calc(33% - 0.5rem);
+    min-width: 7rem;
   }
 }

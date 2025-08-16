@@ -1,5 +1,3 @@
-// Excuse Generator script (neon, resilient)
-
 const $ = (q) => document.querySelector(q);
 const categoryEl = $("#category");
 const excuseEl = $("#excuse");
@@ -13,7 +11,7 @@ const btnClear = $("#btn-clear");
 const favList = $("#favorites");
 
 // ---- CONFIG: adjust endpoints here ----
-const API_EXCUSE = "/excuse";          // if your backend is '/api/excuse', change this to '/api/excuse'
+const API_EXCUSE = "/api/excuse";
 //const API_CATS = null;               // set to '/api/categories' ONLY if you implement it
 const API_CATS = "/api/categories";
 
@@ -31,7 +29,9 @@ async function loadCategories() {
     try {
         const data = await getJSON(API_CATS);
         const list = data.categories || [];
-        const have = new Set([...categoryEl.options].map(o => o.value));
+        // const have = new Set([...categoryEl.options].map(o => o.value));
+        const have = new Set(Array.from(categoryEl.options, o => o.value));
+
         for (const c of list) {
             if (have.has(c)) continue;
             const opt = document.createElement("option");
@@ -57,23 +57,29 @@ function updatePermalink(category, seed) {
     return u.toString();
 }
 
+// Replace your fetchExcuse with this one
 async function fetchExcuse({ category = "", seed = null } = {}) {
     const qs = new URLSearchParams();
     if (category) qs.set("category", category);
     if (seed !== null && seed !== undefined) qs.set("seed", String(seed));
+
     const url = `${API_EXCUSE}${qs.toString() ? "?" + qs.toString() : ""}`;
     const data = await getJSON(url);
-
     const text = data.excuse || data.text || "(no excuse)";
     const used = data.category || category || "";
     const usedSeed = data.seed || Date.now();
 
-    excuseEl && (excuseEl.textContent = text);
+    if (excuseEl) excuseEl.textContent = text;
     if (metaEl) {
         metaEl.textContent = `category: ${used || "random"} • seed: ${usedSeed}`;
         metaEl.style.display = "block";
     }
+
+    // ✅ keep UI in sync so you *see* the category change
+    if (categoryEl && used) categoryEl.value = used;
+
     updatePermalink(used, usedSeed);
+    return { text, category: used, seed: usedSeed };
 }
 
 async function onGenerate() {
@@ -82,8 +88,10 @@ async function onGenerate() {
 }
 
 async function copyText(text) {
-    try { await navigator.clipboard.writeText(text); return true; }
-    catch {
+    try {
+        await navigator.clipboard.writeText(text);
+        return true;
+    } catch {
         const ta = Object.assign(document.createElement("textarea"), { value: text });
         document.body.appendChild(ta); ta.select();
         const ok = document.execCommand("copy"); ta.remove(); return ok;
@@ -94,7 +102,8 @@ async function copyText(text) {
 btnGen?.addEventListener("click", onGenerate);
 
 btnCopy?.addEventListener("click", async () => {
-    const text = excuseEl?.textContent?.trim(); if (!text) return;
+    const text = excuseEl?.textContent?.trim();
+    if (!text) return;
     if (await copyText(text)) { btnCopy.textContent = "Copied!"; setTimeout(() => btnCopy.textContent = "Copy", 900); }
 });
 
@@ -144,20 +153,55 @@ btnSave?.addEventListener("click", () => {
     const { category, seed } = parseQuery(); if (!seed) return;
     const favs = getFavs();
     if (!favs.some(f => String(f.seed) === String(seed) && (f.category || "") === (category || ""))) {
-        favs.unshift({ text, category: category || "", seed }); setFavs(favs); renderFavs();
-        btnSave.textContent = "Saved!"; setTimeout(() => btnSave.textContent = "Save", 900);
+        favs.unshift({ text, category: category || "", seed });
+        setFavs(favs);
+        renderFavs();
+        btnSave.textContent = "Saved!";
+        setTimeout(() => btnSave.textContent = "Save", 900);
     }
 });
 
 favList?.addEventListener("click", async (e) => {
-    const button = e.target.closest("button"); if (!button) return;
+    const button = e.target.closest("button");
+    if (!button) return;
+
     const li = e.target.closest(".eg-fav-item");
-    const seed = li?.dataset.seed; const category = li?.dataset.category || "";
+    const seed = li?.dataset.seed;
+    const category = li?.dataset.category || "";
     const act = button.dataset.act;
-    if (act === "copy") { const t = li.querySelector(".eg-fav-text")?.textContent?.trim() || ""; await copyText(t); }
-    if (act === "open") { await fetchExcuse({ category, seed }); window.scrollTo({ top: 0, behavior: "smooth" }); }
-    if (act === "del") { const favs = getFavs().filter(f => !(String(f.seed) === String(seed) && (f.category || "") === category)); setFavs(favs); renderFavs(); }
+
+    if (act === "copy") {
+        const t = li.querySelector(".eg-fav-text")?.textContent?.trim() || "";
+        await copyText(t);
+        return;
+    }
+
+    if (act === "open") {
+        try {
+            button.disabled = true;
+            const prev = button.textContent;
+            button.textContent = "Opening…";
+            await fetchExcuse({ category, seed });
+            window.scrollTo({ top: 0, behavior: "smooth" });
+            button.textContent = "Opened!";
+            setTimeout(() => (button.textContent = prev, button.disabled = false), 700);
+        } catch (err) {
+            console.error(err);
+            button.textContent = "Failed";
+            setTimeout(() => (button.textContent = "Open", button.disabled = false), 900);
+        }
+        return;
+    }
+
+    if (act === "del") {
+        const favs = getFavs().filter(
+            f => !(String(f.seed) === String(seed) && (f.category || "") === category)
+        );
+        setFavs(favs);
+        renderFavs();
+    }
 });
+
 
 btnClear?.addEventListener("click", () => { localStorage.removeItem(LS_KEY); renderFavs(); });
 
@@ -166,6 +210,12 @@ btnClear?.addEventListener("click", () => { localStorage.removeItem(LS_KEY); ren
     await loadCategories();
     const { category, seed } = parseQuery();
     if (categoryEl && category) categoryEl.value = category;
-    await fetchExcuse({ category: category || "", seed: seed || null });
+    try {
+        await fetchExcuse({ category: category || "", seed: seed || null });
+    } catch (e) {
+        console.error(e);
+        excuseEl && (excuseEl.textContent = "Couldn’t reach the excuse API. Try again.");
+    }
     renderFavs();
 })();
+

@@ -71,15 +71,18 @@ def get_excuse():
     return jsonify({"excuse": random.choice(excuses)})
 
 # Excuse API (supports ?category=general|work|school & ?seed=123)
-@app.get("/excuse")
-def excuse_api():
+@app.get("/api/excuse")
+def api_excuse():
     category = request.args.get("category")
-    seed = request.args.get("seed", type=int) or secrets.randbits(32)
+    seed_param = request.args.get("seed")
+    try:
+        seed = int(seed_param) if seed_param is not None else secrets.randbits(32)
+    except ValueError:
+        seed = secrets.randbits(32)
+    # If category was random, return "" so your JS shows "random" nicely
     rng = random.Random(seed)
     used_cat, text = make_excuse(category, rng)
-    # If category was random, return "" so your JS shows "random" nicely
-    used = used_cat if category in ALL_CATS else ""
-    return jsonify({"excuse": text, "category": used, "seed": seed})
+    return jsonify({"category": used_cat, "excuse": text, "seed": seed})
 
 # Optional: categories endpoint (enable in JS if you want dynamic fill)
 @app.get("/api/categories")
@@ -89,7 +92,7 @@ def api_categories():
 # ----- Pet Name Generator -----
 @app.get("/petname-generator")
 def petname_page():
-    return render_template("petnamegenerator.html")
+    return render_template("petnamegenerator.html", active="petname")
 
 @app.get("/api/petname")
 def petname_api():
