@@ -15,12 +15,12 @@
   --neon-green: #00ff80;
   --neon-yellow: #ffff00;
   --neon-orange: #ff8000;
-  
+
   /* ENHANCED GREEN COLORS */
   --green-600: #059669;
-  --green-500: #10B981;
-  --green-400: #34D399;
-  --green-300: #6EE7B7;
+  --green-500: #10b981;
+  --green-400: #34d399;
+  --green-300: #6ee7b7;
 
   --ring: rgba(255, 0, 128, 0.6);
   --border: rgba(255, 255, 255, 0.2);
@@ -30,15 +30,26 @@
 /* ANIMATED BACKGROUND */
 .petname {
   color: var(--ink);
-  background: 
-    radial-gradient(circle at 20% 80%, rgba(255, 0, 128, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(0, 255, 255, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(128, 0, 255, 0.1) 0%, transparent 50%),
+  background: radial-gradient(
+      circle at 20% 80%,
+      rgba(255, 0, 128, 0.15) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(0, 255, 255, 0.15) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 40% 40%,
+      rgba(128, 0, 255, 0.1) 0%,
+      transparent 50%
+    ),
     linear-gradient(135deg, var(--bg1) 0%, var(--bg2) 50%, var(--bg3) 100%);
   min-height: 100vh;
   position: relative;
   overflow-x: hidden;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
 }
 
 /* FLOATING ORBS */
@@ -87,21 +98,31 @@
 }
 
 @keyframes orbFloat {
-  0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(30px, -30px) scale(1.1); }
-  66% { transform: translate(-20px, 20px) scale(0.9); }
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  33% {
+    transform: translate(30px, -30px) scale(1.1);
+  }
+  66% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
 }
 
 /* FLOATING PARTICLES EFFECT */
 .petname::before {
-  content: '';
+  content: "";
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: 
-    radial-gradient(2px 2px at 20px 30px, var(--neon-pink), transparent),
+  background-image: radial-gradient(
+      2px 2px at 20px 30px,
+      var(--neon-pink),
+      transparent
+    ),
     radial-gradient(2px 2px at 40px 70px, var(--neon-blue), transparent),
     radial-gradient(1px 1px at 90px 40px, var(--neon-purple), transparent),
     radial-gradient(1px 1px at 130px 80px, var(--neon-green), transparent),
@@ -115,8 +136,12 @@
 }
 
 @keyframes float {
-  0% { transform: translateY(0px) rotate(0deg); }
-  100% { transform: translateY(-100px) rotate(360deg); }
+  0% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-100px) rotate(360deg);
+  }
 }
 
 /* NAVIGATION ENHANCEMENT */
@@ -135,8 +160,48 @@
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0.7; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+/* Desktop: show links, hide hamburger */
+.nav-toggle {
+  display: none !important;
+}
+nav .nav-right {
+  display: flex !important;
+}
+
+/* Mobile: show hamburger, collapse menu */
+@media (max-width: 900px) {
+  .nav-toggle {
+    display: flex !important;
+  }
+
+  /* collapsed panel styling (matches main.css) */
+  nav .nav-right {
+    display: none !important;
+    position: absolute;
+    top: 100%;
+    left: 1rem;
+    right: 1rem;
+    padding: 0.75rem;
+    background: rgba(10, 10, 15, 0.96);
+    backdrop-filter: blur(16px);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    flex-direction: column;
+    gap: 0.25rem;
+    z-index: 60;
+  }
+  nav[data-open="true"] .nav-right {
+    display: flex !important;
+  }
 }
 
 /* HEADER WITH COOL TITLE */
@@ -156,12 +221,14 @@
   font-size: 3.5rem;
   font-weight: 900;
   letter-spacing: -2px;
-  background: linear-gradient(45deg, 
-    var(--neon-pink) 0%, 
-    var(--neon-purple) 25%, 
-    var(--neon-blue) 50%, 
-    var(--neon-green) 75%, 
-    var(--neon-yellow) 100%);
+  background: linear-gradient(
+    45deg,
+    var(--neon-pink) 0%,
+    var(--neon-purple) 25%,
+    var(--neon-blue) 50%,
+    var(--neon-green) 75%,
+    var(--neon-yellow) 100%
+  );
   background-size: 300% 300%;
   -webkit-background-clip: text;
   background-clip: text;
@@ -169,7 +236,7 @@
   animation: gradientShift 3s ease infinite;
   text-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
   margin-bottom: 0.5rem;
-  font-family: 'Orbitron', monospace;
+  font-family: "Orbitron", monospace;
 }
 
 .petname .title-decoration {
@@ -198,8 +265,13 @@
 }
 
 @keyframes sparkleFloat {
-  0%, 100% { transform: translateY(0) rotate(0deg); }
-  50% { transform: translateY(-10px) rotate(180deg); }
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(180deg);
+  }
 }
 
 .petname .subtitle-glow {
@@ -211,13 +283,23 @@
 }
 
 @keyframes subtitlePulse {
-  0%, 100% { opacity: 0.8; }
-  50% { opacity: 1; }
+  0%,
+  100% {
+    opacity: 0.8;
+  }
+  50% {
+    opacity: 1;
+  }
 }
 
 @keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
 }
 
 .petname header.container .muted {
@@ -229,30 +311,40 @@
 }
 
 @keyframes glow {
-  from { text-shadow: 0 0 5px var(--muted); }
-  to { text-shadow: 0 0 20px var(--muted), 0 0 30px var(--muted); }
+  from {
+    text-shadow: 0 0 5px var(--muted);
+  }
+  to {
+    text-shadow: 0 0 20px var(--muted), 0 0 30px var(--muted);
+  }
 }
 
 /* MAIN CARD WITH GLASSMORPHISM */
 .petname .card {
   position: relative;
   z-index: 10;
-  background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.1) 0%, 
-    rgba(255, 255, 255, 0.05) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1) 0%,
+    rgba(255, 255, 255, 0.05) 100%
+  );
   border: 1px solid var(--border);
   backdrop-filter: blur(25px);
   border-radius: 25px;
-  box-shadow: 
-    0 25px 50px rgba(0, 0, 0, 0.5),
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5),
     inset 0 1px 0 rgba(255, 255, 255, 0.1);
   padding: 2.5rem;
   animation: cardFloat 6s ease-in-out infinite;
 }
 
 @keyframes cardFloat {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 /* CARD HEADER */
@@ -267,7 +359,7 @@
   color: var(--neon-yellow);
   text-shadow: 0 0 15px var(--neon-yellow);
   margin: 0;
-  font-family: 'Orbitron', monospace;
+  font-family: "Orbitron", monospace;
 }
 
 /* CONTROLS WITH NEON EFFECTS */
@@ -305,7 +397,11 @@
   padding: 1rem 1.5rem;
   border-radius: 15px;
   border: 2px solid transparent;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(255, 255, 255, 0.05)
+  );
   color: var(--ink);
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -331,13 +427,18 @@
 
 .petname select::before,
 .petname button::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
   transition: left 0.5s;
 }
 
@@ -357,35 +458,34 @@
 .petname #btn-generate {
   background: linear-gradient(135deg, var(--neon-pink), var(--neon-purple));
   border-color: var(--neon-pink);
-  box-shadow: 
-    0 0 20px rgba(255, 0, 128, 0.3),
+  box-shadow: 0 0 20px rgba(255, 0, 128, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .petname #btn-generate:hover {
   transform: translateY(-3px) scale(1.05);
-  box-shadow: 
-    0 10px 30px rgba(255, 0, 128, 0.5),
-    0 0 40px rgba(255, 0, 128, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(255, 0, 128, 0.5),
+    0 0 40px rgba(255, 0, 128, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .petname #btn-copy {
-  background: linear-gradient(135deg, var(--green-600), var(--green-500), var(--green-400));
+  background: linear-gradient(
+    135deg,
+    var(--green-600),
+    var(--green-500),
+    var(--green-400)
+  );
   border-color: var(--green-500);
   color: #ffffff;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
-  box-shadow: 
-    0 0 20px rgba(16, 185, 129, 0.3),
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.3),
     inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
 .petname #btn-copy:hover {
   transform: translateY(-3px) scale(1.05);
-  box-shadow: 
-    0 10px 30px rgba(16, 185, 129, 0.5),
-    0 0 40px rgba(16, 185, 129, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  box-shadow: 0 10px 30px rgba(16, 185, 129, 0.5),
+    0 0 40px rgba(16, 185, 129, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 .petname select:hover {
@@ -428,16 +528,25 @@
 }
 
 @keyframes starTwinkle {
-  0%, 100% { opacity: 0.7; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.2); }
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
 }
 
 /* OUTPUT WITH SPECTACULAR STYLING */
 .petname #name.excuse-box {
-  background: linear-gradient(135deg, 
-    rgba(255, 0, 128, 0.1) 0%, 
-    rgba(0, 255, 255, 0.1) 50%, 
-    rgba(128, 0, 255, 0.1) 100%);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 0, 128, 0.1) 0%,
+    rgba(0, 255, 255, 0.1) 50%,
+    rgba(128, 0, 255, 0.1) 100%
+  );
   border: 2px solid transparent;
   border-radius: 20px;
   font-size: clamp(1.5rem, 2rem + 2vw, 3rem);
@@ -462,35 +571,37 @@
 }
 
 .petname #name.excuse-box::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(45deg, 
-    transparent 30%, 
-    rgba(255, 255, 255, 0.1) 50%, 
-    transparent 70%);
+  background: linear-gradient(
+    45deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.1) 50%,
+    transparent 70%
+  );
   animation: shimmer 2s infinite;
 }
 
 @keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 @keyframes nameGlow {
-  0% { 
-    box-shadow: 
-      0 0 20px rgba(255, 0, 128, 0.3),
-      0 0 40px rgba(0, 255, 255, 0.2),
+  0% {
+    box-shadow: 0 0 20px rgba(255, 0, 128, 0.3), 0 0 40px rgba(0, 255, 255, 0.2),
       inset 0 1px 0 rgba(255, 255, 255, 0.1);
   }
-  100% { 
-    box-shadow: 
-      0 0 30px rgba(255, 0, 128, 0.5),
-      0 0 60px rgba(0, 255, 255, 0.3),
+  100% {
+    box-shadow: 0 0 30px rgba(255, 0, 128, 0.5), 0 0 60px rgba(0, 255, 255, 0.3),
       inset 0 1px 0 rgba(255, 255, 255, 0.2);
   }
 }
@@ -505,8 +616,15 @@
 }
 
 @keyframes sparkle {
-  0%, 100% { opacity: 0.5; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.2); }
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
 }
 
 /* METADATA STYLING */
@@ -598,8 +716,15 @@
 }
 
 @keyframes footerSparkle {
-  0%, 100% { opacity: 0.6; transform: scale(1); }
-  50% { opacity: 1; transform: scale(1.1); }
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.1);
+  }
 }
 
 /* RESPONSIVE DESIGN */
@@ -607,18 +732,18 @@
   .petname header.container h1 {
     font-size: 2.5rem;
   }
-  
+
   .petname .controls {
     flex-direction: column;
     gap: 0.8rem;
   }
-  
+
   .petname select,
   .petname button {
     width: 100%;
     max-width: 300px;
   }
-  
+
   .petname #name.excuse-box {
     font-size: 1.8rem;
     padding: 1.5rem;
@@ -629,12 +754,12 @@
   .petname header.container h1 {
     font-size: 2rem;
   }
-  
+
   .petname .card {
     padding: 1.5rem;
     margin: 1rem;
   }
-  
+
   .petname #name.excuse-box {
     font-size: 1.5rem;
     padding: 1rem;

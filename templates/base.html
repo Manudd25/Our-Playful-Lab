@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{% block title %}Our Playful Lab{% endblock %}</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/main.css') }}">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Inter:wght@300;400;600;700;900&display=swap"
+        rel="stylesheet">
+    {% block extra_css %}{% endblock %}
+    <script src="{{ url_for('static', filename='scripts/nav.js') }}" defer></script>
+</head>
+
+<body class="{% block body_class %}{% endblock %}">
+    <!-- shared background orbs -->
+    <div class="bg-elements">
+        <div class="floating-orb orb-1"></div>
+        <div class="floating-orb orb-2"></div>
+        <div class="floating-orb orb-3"></div>
+        <div class="floating-orb orb-4"></div>
+    </div>
+
+    <!-- shared navigation -->
+    <nav>
+        <div class="nav-left">
+            <a href="/" {% if active=='home' %}aria-current="page" {% endif %}>🏠 Home</a>
+        </div>
+
+        <button class="nav-toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false"
+            aria-controls="nav-menu">
+            <span></span><span></span><span></span>
+        </button>
+
+        <div class="nav-right" id="nav-menu">
+            <a href="/excuse-generator" {% if active=='excuse' %}aria-current="page" {% endif %}>Excuse Generator</a>
+            <a href="/petname-generator" {% if active=='petname' %}aria-current="page" {% endif %}>Pet Name
+                Generator</a>
+            <a href="/projects" {% if active=='projects' %}aria-current="page" {% endif %}>Projects</a>
+            <a href="/about" {% if active=='about' %}aria-current="page" {% endif %}>About</a>
+        </div>
+    </nav>
+
+    {% block content %}{% endblock %}
+
+    <!-- shared footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-bottom">&copy; 2025 • Our Playful Lab. Built with ❤️ and lots of ☕</div>
+        </div>
+    </footer>
+
+    <!-- FOOTER DECORATION -->
+    <div class="footer-decoration">
+        <span>✨</span>
+        <span>🌟</span>
+        <span>💫</span>
+        <span>🚀</span>
+    </div>
+
+    {% block extra_js %}{% endblock %}
+</body>
+
+</html>
