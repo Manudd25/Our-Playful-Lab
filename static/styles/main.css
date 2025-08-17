@@ -1,5 +1,3 @@
-/* === MAIN STYLES - SUPER COOL & ATTENTION-GRABBING PORTFOLIO === */
-
 /* CSS Variables */
 :root {
   --bg1: #0a0a0f;
@@ -37,6 +35,10 @@
 /* GLOBAL STYLES */
 * {
   box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -250,7 +252,7 @@ nav {
   nav {
     position: sticky;
     top: 0;
-    z-index: 50;
+    z-index: 100;
   }
   .nav-toggle {
     display: flex;
@@ -274,10 +276,40 @@ nav {
     display: flex;
   }
   .nav-right a {
+    display: block;
     margin: 0;
     padding: 0.9rem 1rem;
     border-radius: 10px;
+    background: transparent;
   }
+  .nav-right a:hover {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--neon-blue);
+    text-shadow: 0 0 10px var(--neon-blue);
+  }
+}
+
+/* --- Desktop reset (ensures other page CSS doesn't override) --- */
+@media (min-width: 901px) {
+  .nav-right {
+    position: static;
+    display: flex;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+    border-radius: 0;
+    gap: 0.5rem;
+  }
+  .nav-toggle {
+    display: none;
+  }
+}
+
+/* Extra safety: if a page stylesheet changed nav styles */
+.petname nav .nav-right,
+.about nav .nav-right {
+  background: rgba(10, 10, 15, 0.96);
+  backdrop-filter: blur(16px);
 }
 
 /* ===================== HERO SECTION ===================== */
@@ -1101,14 +1133,23 @@ nav {
 .footer-decoration {
   position: fixed;
   bottom: 20px;
-  left: 50%;
+  left: 16px;
   transform: translateX(-50%);
   display: flex;
-  gap: 1rem;
+  gap: 0.75rem;
   opacity: 0.6;
-  z-index: 10;
-  pointer-events: none;
+  z-index: 100;
+  pointer-events: auto; /* enable clicks */
+  cursor: pointer;
+  user-select: none;
+  transition: opacity 0.2s ease, transform 0.2s;
 }
+
+.footer-decoration:hover {
+  opacity: 1;
+  transform: translateY(-2px);
+}
+
 .footer-decoration span {
   animation: footerSparkle 2s ease-in-out infinite;
   font-size: 1.2rem;
@@ -1131,6 +1172,20 @@ nav {
   50% {
     opacity: 1;
     transform: scale(1.1);
+  }
+}
+
+.footer-decoration:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 4px var(--ring);
+  border-radius: 12px;
+}
+
+@media (max-width: 480px) {
+  .footer-decoration {
+    bottom: 12px;
+    left: 12px;
+    gap: 0.6rem;
   }
 }
 
@@ -1211,26 +1266,5 @@ nav {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-  }
-}
-
-/* FOOTER DECORATION — move to bottom-left */
-.footer-decoration {
-  position: fixed;
-  bottom: 20px;
-  left: 20px; /* was 50% */
-  transform: none; /* was translateX(-50%) */
-  display: flex;
-  gap: 0.75rem;
-  opacity: 0.6;
-  z-index: 10;
-  pointer-events: none;
-}
-
-@media (max-width: 480px) {
-  .footer-decoration {
-    bottom: 12px;
-    left: 12px;
-    gap: 0.6rem;
   }
 }
