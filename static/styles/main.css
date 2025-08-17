@@ -538,7 +538,7 @@ nav {
   border: 1px solid var(--border);
   backdrop-filter: blur(25px);
   border-radius: 20px;
-  padding: 2rem;
+  padding: 2rem 1.5rem;
   text-align: center;
   transition: all 0.3s ease;
   position: relative;
