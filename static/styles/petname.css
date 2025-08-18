@@ -144,66 +144,6 @@
   }
 }
 
-/* NAVIGATION ENHANCEMENT */
-.petname nav {
-  position: relative;
-  z-index: 10;
-  backdrop-filter: blur(20px);
-  background: rgba(10, 10, 15, 0.8);
-  border-bottom: 1px solid var(--border);
-}
-
-.petname .nav-right a[aria-current="page"] {
-  color: var(--neon-pink);
-  text-shadow: 0 0 10px var(--neon-pink);
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.7;
-  }
-}
-
-/* Desktop: show links, hide hamburger */
-.nav-toggle {
-  display: none !important;
-}
-nav .nav-right {
-  display: flex !important;
-}
-
-/* Mobile: show hamburger, collapse menu */
-@media (max-width: 900px) {
-  .nav-toggle {
-    display: flex !important;
-  }
-
-  /* collapsed panel styling (matches main.css) */
-  nav .nav-right {
-    display: none !important;
-    position: absolute;
-    top: 100%;
-    left: 1rem;
-    right: 1rem;
-    padding: 0.75rem;
-    background: rgba(10, 10, 15, 0.96);
-    backdrop-filter: blur(16px);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    flex-direction: column;
-    gap: 0.25rem;
-    z-index: 60;
-  }
-  nav[data-open="true"] .nav-right {
-    display: flex !important;
-  }
-}
-
 /* HEADER WITH COOL TITLE */
 .petname header.container {
   position: relative;
