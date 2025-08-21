@@ -74,67 +74,49 @@
     <div class="container">
         <h2>Featured Projects</h2>
         <div class="projects-grid">
+            {% for project in featured_projects %}
             <div class="project-card">
                 <div class="project-header">
-                    <h3>🎯 Excuse Generator</h3>
-                    <div class="project-badge live-demo">Live Demo</div>
+                    <h3>{{ project.title }}</h3>
+                    <div class="project-badge {{ project.status|lower|replace(' ', '-') }}">{{ project.status }}</div>
                 </div>
-                <div class="project-category">
-                    <span class="category-tag">Web App</span>
-                </div>
-                <p class="project-description">
-                    A witty excuse generator with creative responses and modern UI design.
-                    Perfect for those moments when you need a creative explanation.
-                </p>
-                <div class="project-features">
-                    <h4>Key Features:</h4>
-                    <ul>
-                        <li>Random excuse generation</li>
-                        <li>Modern UI/UX</li>
-                        <li>Responsive design</li>
-                    </ul>
-                </div>
-                <div class="project-tech">
-                    <span class="tech-tag">Flask</span><span class="tech-tag">Python</span>
-                    <span class="tech-tag">CSS3</span><span class="tech-tag">HTML5</span>
-                </div>
-                <div class="project-actions">
-                    <a href="/excuse-generator" class="project-link primary">
-                        <span class="btn-text">View Project</span><span class="arrow">→</span>
-                    </a>
-                </div>
-            </div>
 
-            <div class="project-card">
-                <div class="project-header">
-                    <h3>🐾 Pet Name Generator</h3>
-                    <div class="project-badge interactive">Interactive</div>
-                </div>
                 <div class="project-category">
-                    <span class="category-tag">Web App</span>
+                    <span class="category-tag">{{ project.category }}</span>
                 </div>
-                <p class="project-description">
-                    Creative pet naming tool with categories and beautiful animations. Generate
-                    unique names for your furry friends. Try it out!
-                </p>
+
+                <p class="project-description">{{ project.description }}</p>
+
                 <div class="project-features">
                     <h4>Key Features:</h4>
                     <ul>
-                        <li>Category-based generation</li>
-                        <li>Beautiful animations</li>
-                        <li>Responsive design</li>
+                        {% for f in project.features %}
+                        <li>{{ f }}</li>
+                        {% endfor %}
                     </ul>
                 </div>
+
                 <div class="project-tech">
-                    <span class="tech-tag">JavaScript</span><span class="tech-tag">CSS3</span>
-                    <span class="tech-tag">HTML5</span><span class="tech-tag">APIs</span>
+                    {% for t in project.technologies %}
+                    <span class="tech-tag">{{ t }}</span>
+                    {% endfor %}
                 </div>
+
                 <div class="project-actions">
-                    <a href="/petname-generator" class="project-link primary">
-                        <span class="btn-text">View Project</span><span class="arrow">→</span>
+                    <a href="{{ project.link }}" class="project-link primary" {% if project.link.startswith('http')
+                        %}target="_blank" {% endif %}>
+                        <span class="btn-text">View Project</span>
+                        <span class="arrow">→</span>
                     </a>
+                    {% if project.github %}
+                    <a href="{{ project.github }}" class="project-link secondary" target="_blank">
+                        <span class="btn-icon">📁</span><span class="btn-text">Source Code</span><span
+                            class="arrow">↗</span>
+                    </a>
+                    {% endif %}
                 </div>
             </div>
+            {% endfor %}
         </div>
     </div>
 </section>
@@ -145,7 +127,7 @@
         <h2>Ready to Work Together?</h2>
         <p>We're passionate about creating innovative solutions and bringing ideas to life.</p>
         <div class="cta-buttons">
-            <a href="/about" class="cta-button primary">
+            <a href="/about" id="open-hire" class="cta-button primary" data-open="hire-modal">
                 <span class="btn-icon">📧</span><span class="btn-text">Get In Touch</span>
             </a>
         </div>
