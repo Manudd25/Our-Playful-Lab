@@ -43,6 +43,33 @@
         </div>
     </nav>
 
+    <!-- Work With Us Modal -->
+    <div class="hire-modal" id="hire-modal" aria-hidden="true">
+        <div class="hire-modal__overlay" id="hire-overlay"></div>
+
+        <div class="hire-modal__card" role="dialog" aria-modal="true" aria-labelledby="hire-title">
+            <button class="hire-modal__close" id="hire-close" aria-label="Close">✕</button>
+
+            <h3 id="hire-title" class="hire-modal__title">Work With Us</h3>
+
+            <p class="hire-modal__line">
+                You bring the coffee ☕, we’ll bring the code 💻. Let’s chat!
+            </p>
+
+            <p class="hire-modal__line small">
+                We’re open to freelance projects, collaborations, and creative ideas.
+                Until we set up a proper form, reach us via LinkedIn 👇
+            </p>
+
+            <div class="hire-modal__actions">
+                <a class="cta-button primary" target="_blank" rel="noopener"
+                    href="https://www.linkedin.com/in/irinaniko/">💬 Irina</a>
+                <a class="cta-button secondary" target="_blank" rel="noopener"
+                    href="https://www.linkedin.com/in/manuela-di-dario-11812372/">💬 Manuela</a>
+            </div>
+        </div>
+    </div>
+
     {% block content %}{% endblock %}
 
     <!-- shared footer -->

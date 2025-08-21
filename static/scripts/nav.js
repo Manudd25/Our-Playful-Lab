@@ -44,3 +44,18 @@
         });
     }
 })();
+
+(function () {
+    const modal = document.getElementById('hire-modal');
+    const open = document.getElementById('open-hire');
+    const close = document.getElementById('hire-close');
+    const overlay = document.getElementById('hire-overlay');
+
+    function show() { modal.setAttribute('aria-hidden', 'false'); }
+    function hide() { modal.setAttribute('aria-hidden', 'true'); }
+
+    open?.addEventListener('click', (e) => { e.preventDefault(); show(); });
+    close?.addEventListener('click', hide);
+    overlay?.addEventListener('click', hide);
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') hide(); });
+})();
